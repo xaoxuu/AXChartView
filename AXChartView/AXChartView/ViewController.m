@@ -27,7 +27,7 @@
     v1.dataSource = self;
     v1.delegate = self;
     v1.title = @"AXChartView";
-//    v1.lineWidth = 6;
+    v1.lineWidth = 2;
     v1.smoothFactor = 0.5;
     v1.accentColor = [UIColor orangeColor];
     
@@ -46,19 +46,20 @@
 
 
 - (NSUInteger)chartViewItemsCount{
-    return 50;
+    return 7;
 }
 
 - (NSNumber *)chartViewValueForIndex:(NSUInteger)index{
-    return @(arc4random_uniform(10));
+    return @(arc4random_uniform(20000));
 }
 
 - (NSString *)chartViewTitleForIndex:(NSUInteger)index{
-    return @(index).stringValue;
+    return @(index+1).stringValue;
 }
-- (NSInteger)chartViewShowTitleForIndexWithSteps{
-    return 5;
-}
+
+//- (NSInteger)chartViewShowTitleForIndexWithSteps{
+//    return 2; // 每两天显示一个
+//}
 
 //- (NSString *)chartViewSummaryText:(UILabel *)label{
 //    return @"haha";

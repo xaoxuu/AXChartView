@@ -11,7 +11,7 @@
 
 static CGFloat margin = 8.0;
 // @xaoxuu: 连接点的宽度（直径）
-static CGFloat pointRadius = 4;
+static CGFloat pointRadius = 5;
 
 
 // @xaoxuu: 顶部标签高度
@@ -517,6 +517,7 @@ static CGFloat popViewWeight = 50;
         _popLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, popViewWeight, popViewHeight)];
         _popLabel.backgroundColor = [UIColor whiteColor];
         _popLabel.font = [UIFont systemFontOfSize:13];
+        _popLabel.textColor = [UIColor darkGrayColor];
         _popLabel.numberOfLines = 1;
         _popLabel.textAlignment = NSTextAlignmentCenter;
         _popLabel.adjustsFontSizeToFitWidth = YES;
