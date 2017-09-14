@@ -69,9 +69,7 @@ static CGFloat popViewWeight = 50;
         [self.layer.sublayers.lastObject removeFromSuperlayer];
     }
     
-    
     [self setNeedsDisplay];
-    
     
 }
 
@@ -109,11 +107,18 @@ static CGFloat popViewWeight = 50;
 }
 - (void)_init{
     
-    
+    CGRect frame = self.frame;
+    if (frame.size.height < 100) {
+        frame.size.height = 100;
+    }
+    if (frame.size.width < 100) {
+        frame.size.width = 100;
+    }
+    self.frame = frame;
     _valuePoints = [NSMutableArray array];
     self.lineWidth = 1;
     self.accentColor = [UIColor grayColor];
-    self.lineColor = [UIColor whiteColor];
+    self.textColor = [UIColor whiteColor];
     self.backgroundColor = [UIColor lightGrayColor];
     
 }
@@ -151,20 +156,24 @@ static CGFloat popViewWeight = 50;
     UILabel *title = [[UILabel alloc] initWithFrame:CGRectMake(margin, margin/2, halfWidth, topLabelHeight)];
     title.text = self.title;
     title.font = [UIFont systemFontOfSize:13];
-    title.textColor = self.lineColor;
+    title.textColor = self.textColor;
     [self addSubview:title];
     
-    UILabel *currentValue = [[UILabel alloc] initWithFrame:CGRectMake(margin + halfWidth, margin/2, halfWidth, topLabelHeight)];
-    currentValue.textAlignment = NSTextAlignmentRight;
-    currentValue.text = self.itemValues.lastObject.stringValue;
-    currentValue.font = [UIFont boldSystemFontOfSize:15];
-    currentValue.textColor = self.lineColor;
-    [self addSubview:currentValue];
+    UILabel *sumValue = [[UILabel alloc] initWithFrame:CGRectMake(margin + halfWidth, margin/2, halfWidth, topLabelHeight)];
+    sumValue.textAlignment = NSTextAlignmentRight;
+    sumValue.font = [UIFont boldSystemFontOfSize:15];
+    sumValue.textColor = self.textColor;
+    if ([self.dataSource respondsToSelector:@selector(chartViewSummaryText:)]) {
+        sumValue.text = [self.dataSource chartViewSummaryText:sumValue];
+    } else {
+        sumValue.text = [[self.itemValues valueForKeyPath:@"@sum.intValue"] stringValue];
+    }
+    [self addSubview:sumValue];
     
     // @xaoxuu: 顶部横线
     CALayer *topLine = [CALayer layer];
     topLine.frame = CGRectMake(margin, margin + topLabelHeight, self.chartWidth, 0.5);
-    topLine.backgroundColor = self.lineColor.CGColor;
+    topLine.backgroundColor = [UIColor colorWithWhite:1 alpha:0.7].CGColor;
     [self.layer addSublayer:topLine];
     
     //底部标签
@@ -179,13 +188,11 @@ static CGFloat popViewWeight = 50;
             UILabel *verLb=  [[UILabel alloc] init];
             verLb.font = [UIFont systemFontOfSize:12];
             verLb.text = obj;
-            verLb.textColor = self.lineColor;
+            verLb.textColor = self.textColor;
             verLb.textAlignment = NSTextAlignmentCenter;
             verLb.adjustsFontSizeToFitWidth = YES;
-//            CGFloat left = margin + (idx - 0.5) * self.itemWidth;
             CGFloat width = labelWidth;
             if (idx == 0) {
-//                left = margin;
                 width = 0.5 * labelWidth;
                 verLb.textAlignment = NSTextAlignmentLeft;
             } else if (idx == self.itemTitles.count - 1) {
@@ -200,39 +207,7 @@ static CGFloat popViewWeight = 50;
         
     }];
     
-    
-}
-
-
-- (void)drawRect:(CGRect)rect{
-    [super drawRect:rect];
-    
-    [self prepareToDraw];
-    
-    CGFloat top = topLabelHeight;
-    CGFloat bottom = self.chartHeight + top;
-    CGFloat left = margin;
-    CGFloat right = margin + self.chartWidth;
-    
-    CGFloat itemWidth = self.itemWidth;
-    [[UIColor whiteColor] setStroke];
-    [self.backgroundColor setFill];
-    
-    UIBezierPath *fillPath = [UIBezierPath bezierPath];
-    UIBezierPath *strokePath = [UIBezierPath bezierPath];
-    fillPath.lineWidth = self.lineWidth;
-    fillPath.lineCapStyle = kCGLineCapRound; //线条拐角
-    fillPath.lineJoinStyle = kCGLineJoinRound; //终点处理
-    strokePath.lineCapStyle = kCGLineCapRound; //线条拐角
-    strokePath.lineJoinStyle = kCGLineJoinRound; //终点处理
-    
-    // @xaoxuu: 起始/终止点
-    CGPoint startPoint = CGPointMake(left, bottom);
-    CGPoint endPoint = CGPointMake(right, bottom);
-    [fillPath moveToPoint:startPoint];
-    [strokePath moveToPoint:startPoint];
-    
-    // @xaoxuu: 找出最大值，确定比例
+    // @xaoxuu: 计算坐标点
     __block NSNumber *maxValue = @0;
     [self.itemValues enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if (maxValue.doubleValue < obj.doubleValue) {
@@ -253,43 +228,103 @@ static CGFloat popViewWeight = 50;
             // @xaoxuu: 最大值为0,取值可能在0以下
             
         }
-        CGPoint po = CGPointMake(left + itemWidth * idx, bottom - height);
+        CGPoint po = CGPointMake(margin + self.itemWidth * idx, self.chartHeight + topLabelHeight - height);
         [self.valuePoints addObject:[NSValue valueWithCGPoint:po]];
         
-        CALayer *circle = [CALayer layer];
-        circle.frame = CGRectMake(0, 0, pointRadius, pointRadius);
-        circle.cornerRadius = 0.5*pointRadius;
-        circle.position = po;
-        circle.backgroundColor = self.lineColor.CGColor;
-        [self.layer addSublayer:circle];
-        
-        [fillPath addLineToPoint:po];
-        if (idx == 0) {
-            [strokePath moveToPoint:po];
-        } else {
-            [strokePath addLineToPoint:po];
-        }
-        
     }];
+    
+}
+
+
+- (void)drawRect:(CGRect)rect{
+    [super drawRect:rect];
+    
+    [self prepareToDraw];
+    if (!self.dataSource) {
+        return;
+    }
+    
+    CGFloat top = topLabelHeight;
+    CGFloat bottom = self.chartHeight + top;
+    CGFloat left = margin;
+    CGFloat right = margin + self.chartWidth;
+    
+    [[UIColor whiteColor] setStroke];
+    [self.backgroundColor setFill];
+    
+    
+    UIBezierPath *fillPath = [UIBezierPath bezierPath];
+    UIBezierPath *strokePath = [UIBezierPath bezierPath];
+    fillPath.lineWidth = self.lineWidth;
+    fillPath.lineCapStyle = kCGLineCapRound; //线条拐角
+    fillPath.lineJoinStyle = kCGLineJoinRound; //终点处理
+    strokePath.lineWidth = self.lineWidth;
+    strokePath.lineCapStyle = kCGLineCapRound; //线条拐角
+    strokePath.lineJoinStyle = kCGLineJoinRound; //终点处理
+    // @xaoxuu: 起始/终止点
+    CGPoint startPoint = CGPointMake(left, bottom);
+    CGPoint endPoint = CGPointMake(right, bottom);
+    [fillPath moveToPoint:startPoint];
+    [strokePath moveToPoint:startPoint];
+    int x = self.smoothFactor * 20 + 1;
+    [self drawSmoothedFillPath:fillPath smoothedStrokePath:strokePath withPoints:self.valuePoints granularity:x];
     [fillPath addLineToPoint:endPoint];
     [fillPath addLineToPoint:startPoint];
     [fillPath fill];
     [strokePath stroke];
-    
     // @xaoxuu: 将填充层半透明
     CAShapeLayer *fillLayer = [CAShapeLayer layer];
     fillLayer.path = fillPath.CGPath;
     fillLayer.fillColor = [UIColor colorWithWhite:1 alpha:0.4].CGColor;
     [self.layer addSublayer:fillLayer];
     
-    
     CAShapeLayer *strokeLayer = [CAShapeLayer layer];
     strokeLayer.fillColor = [UIColor clearColor].CGColor;
     strokeLayer.strokeColor = [UIColor whiteColor].CGColor;
     strokeLayer.path = strokePath.CGPath;
+    strokeLayer.lineWidth = self.lineWidth;
     [self.layer addSublayer:strokeLayer];
     
+}
+
+
+- (void)drawSmoothedFillPath:(UIBezierPath *)smoothedFillPath smoothedStrokePath:(UIBezierPath *)smoothedStrokePath withPoints:(NSArray<NSValue *> *) pointsArray granularity:(NSInteger)granularity{
+    NSMutableArray<NSValue *> *points = [NSMutableArray arrayWithArray:pointsArray];
+    // Add control points to make the math make sense
+    [points insertObject:[points objectAtIndex:0] atIndex:0];
+    [points addObject:[points lastObject]];
     
+    [smoothedStrokePath moveToPoint:points[0].CGPointValue];
+    [smoothedFillPath addLineToPoint:points[0].CGPointValue];
+    
+    for (NSUInteger index = 1; index < points.count - 2; index++) {
+        CGPoint p0 = points[index-1].CGPointValue;
+        CGPoint p1 = points[index].CGPointValue;
+        CGPoint p2 = points[index+1].CGPointValue;
+        CGPoint p3 = points[index+2].CGPointValue;
+        
+        // now add n points starting at p1 + dx/dy up until p2 using Catmull-Rom splines
+        for (int i = 1; i < granularity; i++) {
+            
+            float t = (float) i * (1.0f / (float) granularity);
+            float tt = t * t;
+            float ttt = tt * t;
+            
+            CGPoint pi; // intermediate point
+            pi.x = 0.5 * (2*p1.x+(p2.x-p0.x)*t + (2*p0.x-5*p1.x+4*p2.x-p3.x)*tt + (3*p1.x-p0.x-3*p2.x+p3.x)*ttt);
+            pi.y = 0.5 * (2*p1.y+(p2.y-p0.y)*t + (2*p0.y-5*p1.y+4*p2.y-p3.y)*tt + (3*p1.y-p0.y-3*p2.y+p3.y)*ttt);
+            [smoothedStrokePath addLineToPoint:pi];
+            [smoothedFillPath addLineToPoint:pi];
+        }
+        
+        // Now add p2
+        [smoothedStrokePath addLineToPoint:p2];
+        [smoothedFillPath addLineToPoint:p2];
+    }
+    
+    // finish by adding the last point
+    [smoothedStrokePath addLineToPoint:points[points.count - 1].CGPointValue];
+    [smoothedFillPath addLineToPoint:points[points.count - 1].CGPointValue];
 }
 
 
@@ -470,6 +505,9 @@ static CGFloat popViewWeight = 50;
         _popView.layer.cornerRadius = pointRadius;
         _popView.layer.borderColor = [UIColor whiteColor].CGColor;
         _popView.layer.borderWidth = 0.5*pointRadius;
+        _popView.layer.shadowOffset = CGSizeMake(0, 1);
+        _popView.layer.shadowRadius = 1;
+        _popView.layer.shadowOpacity = 0.3;
     }
     return _popView;
 }
@@ -482,6 +520,9 @@ static CGFloat popViewWeight = 50;
         _popLabel.numberOfLines = 1;
         _popLabel.textAlignment = NSTextAlignmentCenter;
         _popLabel.adjustsFontSizeToFitWidth = YES;
+        _popLabel.layer.shadowOffset = CGSizeMake(0, 1);
+        _popLabel.layer.shadowRadius = 1;
+        _popLabel.layer.shadowOpacity = 0.3;
     }
     return _popLabel;
 }
@@ -511,5 +552,6 @@ static CGFloat popViewWeight = 50;
     }
     return _borderLayer;
 }
+
 
 @end

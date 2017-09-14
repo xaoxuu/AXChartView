@@ -40,6 +40,14 @@
 
 
 /**
+ 右上角的摘要文本（默认为数据总和）
+
+ @return 右上角的摘要文本（默认为数据总和）
+ */
+- (NSString *)chartViewSummaryText:(UILabel *)label;
+
+
+/**
  当item过多时无法全部显示出来，需要决定每几个显示一个
 
  @return 当item过多时无法全部显示出来，需要决定每几个显示一个
@@ -102,13 +110,18 @@
 /**
  线条颜色
  */
-@property (strong, nonatomic) UIColor *lineColor;
+@property (strong, nonatomic) UIColor *textColor;
 
 /**
  图表标题
  */
 @property (copy, nonatomic) NSString *title;
 
+
+/**
+ 曲线平滑因数（0：折线图，1:非常光滑，取值0~1，越大越失真）
+ */
+@property (assign, nonatomic) CGFloat smoothFactor;
 
 /**
  reload chart view with data source
