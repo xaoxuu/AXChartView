@@ -5,4 +5,4 @@
 
 效果图示：
 
-![](resources/Simulator Screen Shot 14 Sep 2017, 5.59.43 PM.png)
+![](resources/SimulatorScreenShot1.png)
