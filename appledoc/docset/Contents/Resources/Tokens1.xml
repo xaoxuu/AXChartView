@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/AXChartView.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/AXChartView</TokenIdentifier>
+			<Abstract type="html">图表工具类</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+            
+			
+			<NodeRef refid="1"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/setDataSource:</TokenIdentifier>
+			<Abstract type="html">数据源</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;AXChartViewDataSource&gt; dataSource</Declaration>
+			
+			
+			<Anchor>//api/name/dataSource</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/dataSource</TokenIdentifier>
+			<Abstract type="html">数据源</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;AXChartViewDataSource&gt; dataSource</Declaration>
+			
+			
+			<Anchor>//api/name/dataSource</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AXChartView/dataSource</TokenIdentifier>
+			<Abstract type="html">数据源</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;AXChartViewDataSource&gt; dataSource</Declaration>
+			
+			
+			<Anchor>//api/name/dataSource</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/setDelegate:</TokenIdentifier>
+			<Abstract type="html">代理</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;AXChartViewDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/delegate</TokenIdentifier>
+			<Abstract type="html">代理</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;AXChartViewDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AXChartView/delegate</TokenIdentifier>
+			<Abstract type="html">代理</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (weak, nonatomic) id&lt;AXChartViewDelegate&gt; delegate</Declaration>
+			
+			
+			<Anchor>//api/name/delegate</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/setLineWidth:</TokenIdentifier>
+			<Abstract type="html">线宽，默认值为1</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (assign, nonatomic) CGFloat lineWidth</Declaration>
+			
+			
+			<Anchor>//api/name/lineWidth</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/lineWidth</TokenIdentifier>
+			<Abstract type="html">线宽，默认值为1</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (assign, nonatomic) CGFloat lineWidth</Declaration>
+			
+			
+			<Anchor>//api/name/lineWidth</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AXChartView/lineWidth</TokenIdentifier>
+			<Abstract type="html">线宽，默认值为1</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (assign, nonatomic) CGFloat lineWidth</Declaration>
+			
+			
+			<Anchor>//api/name/lineWidth</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/setAccentColor:</TokenIdentifier>
+			<Abstract type="html">强调色，默认为灰色（pop视图的主题色）</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UIColor *accentColor</Declaration>
+			
+			
+			<Anchor>//api/name/accentColor</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/accentColor</TokenIdentifier>
+			<Abstract type="html">强调色，默认为灰色（pop视图的主题色）</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UIColor *accentColor</Declaration>
+			
+			
+			<Anchor>//api/name/accentColor</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AXChartView/accentColor</TokenIdentifier>
+			<Abstract type="html">强调色，默认为灰色（pop视图的主题色）</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UIColor *accentColor</Declaration>
+			
+			
+			<Anchor>//api/name/accentColor</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/setTextColor:</TokenIdentifier>
+			<Abstract type="html">文本颜色，默认为白色</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UIColor *textColor</Declaration>
+			
+			
+			<Anchor>//api/name/textColor</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/textColor</TokenIdentifier>
+			<Abstract type="html">文本颜色，默认为白色</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UIColor *textColor</Declaration>
+			
+			
+			<Anchor>//api/name/textColor</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AXChartView/textColor</TokenIdentifier>
+			<Abstract type="html">文本颜色，默认为白色</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) UIColor *textColor</Declaration>
+			
+			
+			<Anchor>//api/name/textColor</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/setTitle:</TokenIdentifier>
+			<Abstract type="html">图表标题</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (copy, nonatomic) NSString *title</Declaration>
+			
+			
+			<Anchor>//api/name/title</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/title</TokenIdentifier>
+			<Abstract type="html">图表标题</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (copy, nonatomic) NSString *title</Declaration>
+			
+			
+			<Anchor>//api/name/title</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AXChartView/title</TokenIdentifier>
+			<Abstract type="html">图表标题</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (copy, nonatomic) NSString *title</Declaration>
+			
+			
+			<Anchor>//api/name/title</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/setSmoothFactor:</TokenIdentifier>
+			<Abstract type="html">曲线平滑因数，默认为0（0：折线图，1:非常光滑，取值0~1，越大越失真）</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (assign, nonatomic) CGFloat smoothFactor</Declaration>
+			
+			
+			<Anchor>//api/name/smoothFactor</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/smoothFactor</TokenIdentifier>
+			<Abstract type="html">曲线平滑因数，默认为0（0：折线图，1:非常光滑，取值0~1，越大越失真）</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (assign, nonatomic) CGFloat smoothFactor</Declaration>
+			
+			
+			<Anchor>//api/name/smoothFactor</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AXChartView/smoothFactor</TokenIdentifier>
+			<Abstract type="html">曲线平滑因数，默认为0（0：折线图，1:非常光滑，取值0~1，越大越失真）</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>@property (assign, nonatomic) CGFloat smoothFactor</Declaration>
+			
+			
+			<Anchor>//api/name/smoothFactor</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AXChartView/reloadData</TokenIdentifier>
+			<Abstract type="html">重新获取数据并刷新图表</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>- (void)reloadData</Declaration>
+			
+			
+			<Anchor>//api/name/reloadData</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

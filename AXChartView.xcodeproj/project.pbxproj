@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		CDA56E561F6CD03700B5A1FD /* Docs */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = CDA56E591F6CD03700B5A1FD /* Build configuration list for PBXAggregateTarget "Docs" */;
+			buildPhases = (
+				CDA56E5A1F6CD03F00B5A1FD /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Docs;
+			productName = Docs;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		CDF19F571F6A323300DF0A33 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF19F561F6A323300DF0A33 /* main.m */; };
 		CDF19F5A1F6A323300DF0A33 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CDF19F591F6A323300DF0A33 /* AppDelegate.m */; };
@@ -121,6 +135,11 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = xaoxuu;
 				TargetAttributes = {
+					CDA56E561F6CD03700B5A1FD = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 6C36HX8DP4;
+						ProvisioningStyle = Automatic;
+					};
 					CDF19F511F6A323300DF0A33 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 6C36HX8DP4;
@@ -142,6 +161,7 @@
 			projectRoot = "";
 			targets = (
 				CDF19F511F6A323300DF0A33 /* AXChartView */,
+				CDA56E561F6CD03700B5A1FD /* Docs */,
 			);
 		};
 /* End PBXProject section */
@@ -158,6 +178,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CDA56E5A1F6CD03F00B5A1FD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"xaoxuu\";\ncompanyID=\"com.xaoxuu\";\ncompanyURL=\"http://xaoxuu.com\";\ntarget=\"iphoneos\";\n#target=\"macosx\";\noutputPath=\"${SRCROOT}/appledoc\";\n# End constants\n/usr/local/bin/appledoc --project-name \"${PROJECT_NAME}\" --project-company \"${company}\" --company-id \"${companyID}\" --docset-atom-filename \"${company}.atom\" --docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" --docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" --docset-fallback-url \"${companyURL}/${company}\" --output \"${outputPath}\" --publish-docset --docset-platform-family \"${target}\" --logformat xcode --keep-intermediate-files --no-repeat-first-par --no-warn-invalid-crossref --exit-threshold 2 \"${PROJECT_DIR}/${PROJECT_NAME}/${PROJECT_NAME}\"\n\nopen \"${SRCROOT}/appledoc/html/index.html\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CDF19F4E1F6A323300DF0A33 /* Sources */ = {
@@ -193,6 +229,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CDA56E571F6CD03700B5A1FD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 6C36HX8DP4;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		CDA56E581F6CD03700B5A1FD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 6C36HX8DP4;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		CDF19F671F6A323300DF0A33 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -312,6 +364,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CDA56E591F6CD03700B5A1FD /* Build configuration list for PBXAggregateTarget "Docs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CDA56E571F6CD03700B5A1FD /* Debug */,
+				CDA56E581F6CD03700B5A1FD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		CDF19F4D1F6A323300DF0A33 /* Build configuration list for PBXProject "AXChartView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -328,6 +388,7 @@
 				CDF19F6B1F6A323300DF0A33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

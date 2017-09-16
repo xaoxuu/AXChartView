@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/AXChartViewDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/AXChartViewDelegate</TokenIdentifier>
+			<Abstract type="html">图表的代理</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+            
+			
+			<NodeRef refid="3"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/AXChartViewDelegate/chartViewDidSelectItemWithIndex:</TokenIdentifier>
+			<Abstract type="html">选中了某一列</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>- (void)chartViewDidSelectItemWithIndex:(NSUInteger)index</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>index</Name>
+					<Abstract type="html">列索引</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/chartViewDidSelectItemWithIndex:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/AXChartViewDelegate/chartViewWillSetGradientLayer:</TokenIdentifier>
+			<Abstract type="html">将设置渐变色图层</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>- (void)chartViewWillSetGradientLayer:(CAGradientLayer *)gradientLayer</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>gradientLayer</Name>
+					<Abstract type="html">渐变色图层</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/chartViewWillSetGradientLayer:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

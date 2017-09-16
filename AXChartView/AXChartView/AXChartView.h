@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 
 
+/**
+ 图表的数据源
+ */
 @protocol AXChartViewDataSource <NSObject>
 
 /**
@@ -42,6 +45,7 @@
 /**
  右上角的摘要文本（默认为数据总和）
 
+ @param label 标签，可自定义此控件
  @return 右上角的摘要文本（默认为数据总和）
  */
 - (NSString *)chartViewSummaryText:(UILabel *)label;
@@ -64,6 +68,10 @@
 
 @end
 
+
+/**
+ 图表的代理
+ */
 @protocol AXChartViewDelegate <NSObject>
 
 @optional
@@ -85,6 +93,9 @@
 @end
 
 
+/**
+ 图表工具类
+ */
 @interface AXChartView : UIView
 
 /**
@@ -98,17 +109,17 @@
 @property (weak, nonatomic) id<AXChartViewDelegate> delegate;
 
 /**
- 线宽
+ 线宽，默认值为1
  */
 @property (assign, nonatomic) CGFloat lineWidth;
 
 /**
- 强调色
+ 强调色，默认为灰色（pop视图的主题色）
  */
 @property (strong, nonatomic) UIColor *accentColor;
 
 /**
- 线条颜色
+ 文本颜色，默认为白色
  */
 @property (strong, nonatomic) UIColor *textColor;
 
@@ -119,12 +130,12 @@
 
 
 /**
- 曲线平滑因数（0：折线图，1:非常光滑，取值0~1，越大越失真）
+ 曲线平滑因数，默认为0（0：折线图，1:非常光滑，取值0~1，越大越失真）
  */
 @property (assign, nonatomic) CGFloat smoothFactor;
 
 /**
- reload chart view with data source
+ 重新获取数据并刷新图表
  */
 - (void)reloadData;
 

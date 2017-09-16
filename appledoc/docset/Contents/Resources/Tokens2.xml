@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Protocols/AXChartViewDataSource.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intf/AXChartViewDataSource</TokenIdentifier>
+			<Abstract type="html">图表的数据源</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+            
+			
+			<NodeRef refid="2"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/AXChartViewDataSource/chartViewItemsCount</TokenIdentifier>
+			<Abstract type="html">总列数</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>- (NSUInteger)chartViewItemsCount</Declaration>
+			
+			<ReturnValue><Abstract type="html">总列数</Abstract></ReturnValue>
+			<Anchor>//api/name/chartViewItemsCount</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/AXChartViewDataSource/chartViewValueForIndex:</TokenIdentifier>
+			<Abstract type="html">第index列的值</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>- (NSNumber *)chartViewValueForIndex:(NSUInteger)index</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>index</Name>
+					<Abstract type="html">列索引</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">第index列的值</Abstract></ReturnValue>
+			<Anchor>//api/name/chartViewValueForIndex:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/AXChartViewDataSource/chartViewTitleForIndex:</TokenIdentifier>
+			<Abstract type="html">第index列的标题</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)chartViewTitleForIndex:(NSUInteger)index</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>index</Name>
+					<Abstract type="html">列索引</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">第index列的标题</Abstract></ReturnValue>
+			<Anchor>//api/name/chartViewTitleForIndex:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/AXChartViewDataSource/chartViewSummaryText:</TokenIdentifier>
+			<Abstract type="html">右上角的摘要文本（默认为数据总和）</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>- (NSString *)chartViewSummaryText:(UILabel *)label</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>label</Name>
+					<Abstract type="html">标签，可自定义此控件</Abstract>
+				</Parameter>
+			</Parameters>
+			<ReturnValue><Abstract type="html">右上角的摘要文本（默认为数据总和）</Abstract></ReturnValue>
+			<Anchor>//api/name/chartViewSummaryText:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/AXChartViewDataSource/chartViewShowTitleForIndexWithSteps</TokenIdentifier>
+			<Abstract type="html">当item过多时无法全部显示出来，需要决定每几个显示一个</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>- (NSInteger)chartViewShowTitleForIndexWithSteps</Declaration>
+			
+			<ReturnValue><Abstract type="html">当item过多时无法全部显示出来，需要决定每几个显示一个</Abstract></ReturnValue>
+			<Anchor>//api/name/chartViewShowTitleForIndexWithSteps</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/intfm/AXChartViewDataSource/chartViewMaxValue</TokenIdentifier>
+			<Abstract type="html">最大值（如果实际值有超过此值的，按照实际的最大值计算）</Abstract>
+			<DeclaredIn>AXChartView.h</DeclaredIn>
+			
+			<Declaration>- (NSNumber *)chartViewMaxValue</Declaration>
+			
+			<ReturnValue><Abstract type="html">最大值（如果实际值有超过此值的，按照实际的最大值计算）</Abstract></ReturnValue>
+			<Anchor>//api/name/chartViewMaxValue</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>
