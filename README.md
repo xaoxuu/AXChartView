@@ -5,7 +5,7 @@
 
 效果图示：
 
-![](resources/QQ20170914-180734@2x.png)
+![](https://user-images.githubusercontent.com/16400144/30470718-78958ab6-9a28-11e7-8db5-a6dba3c45740.png)
 
 
 
