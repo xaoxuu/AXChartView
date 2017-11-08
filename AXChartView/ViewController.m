@@ -55,7 +55,7 @@
 
  @return 总列数
  */
-- (NSUInteger)chartViewItemsCount{
+- (NSInteger)chartViewItemsCount{
     return 7;
 }
 
@@ -65,7 +65,7 @@
  @param index 列索引
  @return 第index列的值
  */
-- (NSNumber *)chartViewValueForIndex:(NSUInteger)index{
+- (NSNumber *)chartViewValueForIndex:(NSInteger)index{
     return @(arc4random_uniform(20000));
 }
 
@@ -75,7 +75,7 @@
  @param index 列索引
  @return 第index列的标题
  */
-- (NSString *)chartViewTitleForIndex:(NSUInteger)index{
+- (NSString *)chartViewTitleForIndex:(NSInteger)index{
     return @(index+1).stringValue;
 }
 

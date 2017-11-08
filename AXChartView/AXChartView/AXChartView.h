@@ -19,7 +19,7 @@
  
  @return 总列数
  */
-- (NSUInteger)chartViewItemsCount;
+- (NSInteger)chartViewItemsCount;
 
 
 /**
@@ -28,7 +28,7 @@
  @param index 列索引
  @return 第index列的值
  */
-- (NSNumber *)chartViewValueForIndex:(NSUInteger)index;
+- (NSNumber *)chartViewValueForIndex:(NSInteger)index;
 
 
 /**
@@ -37,7 +37,7 @@
  @param index 列索引
  @return 第index列的标题
  */
-- (NSString *)chartViewTitleForIndex:(NSUInteger)index;
+- (NSString *)chartViewTitleForIndex:(NSInteger)index;
 
 @optional
 
@@ -80,7 +80,7 @@
  
  @param index 列索引
  */
-- (void)chartViewDidSelectItemWithIndex:(NSUInteger)index;
+- (void)chartViewDidSelectItemWithIndex:(NSInteger)index;
 
 
 /**

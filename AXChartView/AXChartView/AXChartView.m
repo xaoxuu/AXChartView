@@ -25,7 +25,7 @@ static CGFloat popViewWeight = 50;
 
 @interface AXChartView ()
 
-@property (assign, nonatomic) NSUInteger itemCount;
+@property (assign, nonatomic) NSInteger itemCount;
 @property (strong, nonatomic) NSMutableArray<NSNumber *> *itemValues;
 @property (strong, nonatomic) NSMutableArray<NSString *> *itemTitles;
 
@@ -47,7 +47,7 @@ static CGFloat popViewWeight = 50;
 @property(nonatomic,strong) CAShapeLayer *arrowLayer;   //箭头指向
 @property(nonatomic,strong) CAShapeLayer *borderLayer;  //边框layer
 
-@property (assign, nonatomic) NSUInteger currentIndex;
+@property (assign, nonatomic) NSInteger currentIndex;
 
 @end
 
@@ -106,7 +106,7 @@ static CGFloat popViewWeight = 50;
     _frameHeight = frame.size.height;
 }
 - (void)_init{
-    
+    self.currentIndex = -1;
     CGRect frame = self.frame;
     if (frame.size.height < 100) {
         frame.size.height = 100;
@@ -297,7 +297,7 @@ static CGFloat popViewWeight = 50;
     [smoothedStrokePath moveToPoint:points[0].CGPointValue];
     [smoothedFillPath addLineToPoint:points[0].CGPointValue];
     
-    for (NSUInteger index = 1; index < points.count - 2; index++) {
+    for (NSInteger index = 1; index < points.count - 2; index++) {
         CGPoint p0 = points[index-1].CGPointValue;
         CGPoint p1 = points[index].CGPointValue;
         CGPoint p2 = points[index+1].CGPointValue;
@@ -346,12 +346,16 @@ static CGFloat popViewWeight = 50;
 }
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    static dispatch_block_t block;
+    if (block) {
+        dispatch_block_cancel(block);
+    }
+    block = dispatch_block_create(DISPATCH_BLOCK_BARRIER, ^{
         self.popView.hidden = YES;
         self.popLabel.hidden = YES;
-        self.currentIndex = NSUIntegerMax;
+        self.currentIndex = -1;
     });
-    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), block);
 }
 
 - (void)startAnimation {
@@ -384,8 +388,8 @@ static CGFloat popViewWeight = 50;
 }
 
 
-- (void)selectIndex:(NSUInteger)index{
-    self.currentIndex = index;
+- (void)selectIndex:(NSInteger)index{
+    
     if ([self.delegate respondsToSelector:@selector(chartViewDidSelectItemWithIndex:)]) {
         [self.delegate chartViewDidSelectItemWithIndex:index];
     }
@@ -417,7 +421,8 @@ static CGFloat popViewWeight = 50;
         isRight = YES;
         left = self.valuePoints[index].CGPointValue.x - popViewWeight;
     }
-    [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    dispatch_block_t block;
+    block = ^{
         self.popLabel.textAlignment = NSTextAlignmentCenter;
         CGFloat y;
         if (point.y > self.frameHeight/2) {
@@ -427,7 +432,15 @@ static CGFloat popViewWeight = 50;
         }
         CGRect frame = CGRectMake(left, y, popViewWeight, popViewHeight);
         self.popLabel.frame = frame;
-    } completion:nil];
+    };
+    if (self.currentIndex >= 0) {
+        [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            block();
+        } completion:nil];
+    } else {
+        block();
+    }
+    
     
     UIBezierPath *path = [UIBezierPath bezierPath];
     
@@ -452,9 +465,10 @@ static CGFloat popViewWeight = 50;
     [path closePath];
     self.borderLayer.path = path.CGPath;
     
+    self.currentIndex = index;
 }
 
-- (NSUInteger)itemCount{
+- (NSInteger)itemCount{
     if (!_itemCount) {
         if ([self.dataSource respondsToSelector:@selector(chartViewItemsCount)]) {
             _itemCount = [self.dataSource chartViewItemsCount];
