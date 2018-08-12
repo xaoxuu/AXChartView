@@ -389,7 +389,9 @@ static CGFloat popViewWeight = 50;
 
 
 - (void)selectIndex:(NSInteger)index{
-    
+    if (index >= self.valuePoints.count) {
+        return;
+    }
     if ([self.delegate respondsToSelector:@selector(chartViewDidSelectItemWithIndex:)]) {
         [self.delegate chartViewDidSelectItemWithIndex:index];
     }
